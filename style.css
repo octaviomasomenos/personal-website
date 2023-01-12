@@ -1,0 +1,13 @@
+* {
+    margin:0;
+    padding:0;
+}
+.header {
+    min-height: 100vh;
+    width:100%;
+    background-color: #204; /* For browsers that do not support gradients */
+    background-image: linear-gradient(#00c, #306);
+}
+.header h1 {
+    color:#ff0
+}
