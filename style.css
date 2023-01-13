@@ -1,13 +1,74 @@
 * {
-    margin:0;
-    padding:0;
+  margin:0;
+  padding:0;
 }
 .header {
-    min-height: 100vh;
-    width:100%;
-    background-color: #204; /* For browsers that do not support gradients */
-    background-image: linear-gradient(#00c, #306);
+  min-height: 100vh;
+  width:100%;
+  background-color: #204; /* For browsers that do not support gradients */
+  background-image: linear-gradient(#008, #306);
+}
+.screen-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* below screen width of 270px, translate needs to be -55%, -60%  */
+  max-width:100%;
+  min-width:80vw;
+}
+.splash-image {
+  /* the magic */
+  display: block;
+  width: 48vw;
+/*  height: 80%; */
+  overflow: hidden;
+  -webkit-border-radius: 50vw;
+  -moz-border-radius: 50vw;
+  -ms-border-radius: 50vw;
+  -o-border-radius: 50vw;
+  border-radius: 50vw;
+  /* the rest */
+  position: relative; /* for the overlay later */
+  margin: 0px auto;
+  text-align: center;
+  margin-bottom: 10px;
+  border: 10px solid black;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3),inset 0px 3px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 0 100px 50px black;
+}
+.splash-image img {
+  max-width: 100%;
+  height: 50vw;
+  width:50vw;
+  vertical-align: middle;
+  /* make resized images look good in IE */
+  -ms-interpolation-mode: bicubic;
+}
+/* here's a hover overlay, in case you want that */
+.splash-image span {
+  display: none;
+}
+.splash-image:hover span {
+  display: block;
+  position:absolute;
+  height:50vw;
+  width:50vw;
+  top:0;
+  left:-5vw;
+  padding:25% 8%;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  margin:auto;
+  padding-top:25%
+}
+.splash-image:hover span img {
+  min-width:100px;
+  min-width:100px;
+  height:10vw;
+  width:10vw;
 }
 .header h1 {
-    color:#ff0
+  color:#ff0
 }
