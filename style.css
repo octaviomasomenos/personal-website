@@ -210,7 +210,7 @@ body {
 }
 
 .htguru {
-  background-image: url("assets/images/home-theater.png");
+  background-image: url("assets/images/home.theater.png");
   /*   background-size: 7vw; */
   background-repeat: no-repeat;
   background-position-y: center;
@@ -230,7 +230,7 @@ body {
 }
 
 .itpro {
-  background-image: url("assets/images/it-pro.png");
+  background-image: url("assets/images/it.pro.png");
   /*   background-size: 7vw; */
   background-repeat: no-repeat;
   background-position-y: center;
@@ -287,10 +287,11 @@ body {
 }
 
 .smarthome {
-  background-image: url("assets/images/smarthome2.png");
+  background-image: url("assets/images/smarthome.png");
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
+  background-position-x: 0.3vw;
   margin-left: 37vw;
 }
 .shtext {
@@ -306,10 +307,11 @@ body {
 }
 
 .me {
-  background-image: url("assets/images/human-being.png");
+  background-image: url("assets/images/human.being.png");
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
+  background-position-x: 0.3vw;
   margin-left: 55vw;
 }
 .metext {
