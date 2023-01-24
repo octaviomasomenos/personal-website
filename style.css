@@ -1,74 +1,385 @@
-* {
-  margin:0;
-  padding:0;
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #004;
+  color: rgba(13, 130, 255);
 }
-.header {
-  min-height: 100vh;
-  width:100%;
-  background-color: #204; /* For browsers that do not support gradients */
-  background-image: linear-gradient(#008, #306);
+
+.banner {
+  font-size: clamp(2.5rem, 14vw * 0.75, 4.5rem);
+  padding: 2rem 0;
+  width: 100%;
+  text-align: center;
+  z-index: 155;
+  color: rgba(13, 130, 255, 1);
+  font-family: "Libre Franklin", sans-serif;
+  animation-name: fade-in;
+  animation-duration: 5s;
 }
-.screen-center {
+@keyframes fade-in {
+  0% {
+    color: #004;
+  }
+  100% {
+    color: rgba(13, 130, 255, 1);
+  }
+}
+
+.splash-overlay {
+  /* Transparent overlay to briefly  prevent hover text from showing  (depending on where the user's cursor  is) when the page loads */
+  height: 0.1vh;
+  position: fixed;
+  top: 10vh;
+  width: 100%;
+  animation-name: shrink-overlay;
+  animation-duration: 3s;
+  animation-timing-function: ease-in;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 99;
+}
+@keyframes shrink-overlay {
+  from {
+    height: 80vh;
+  }
+  to {
+    height: 0.1vh;
+  }
+}
+
+.splashimg {
+  width: 20%;
+  min-width: 240px;
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  z-index: 10;
+}
+
+.splashimg img {
+  width: 80%;
+  max-width: 14rem;
+  margin: 0 auto;
+  border: 8px solid black;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  box-shadow: 0 0 5em 2em black;
+}
+
+.hover1 {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* below screen width of 270px, translate needs to be -55%, -60%  */
-  max-width:100%;
-  min-width:80vw;
-}
-.splash-image {
-  /* the magic */
-  display: block;
-  width: 48vw;
-/*  height: 80%; */
-  overflow: hidden;
-  -webkit-border-radius: 50vw;
-  -moz-border-radius: 50vw;
-  -ms-border-radius: 50vw;
-  -o-border-radius: 50vw;
-  border-radius: 50vw;
-  /* the rest */
-  position: relative; /* for the overlay later */
-  margin: 0px auto;
-  text-align: center;
-  margin-bottom: 10px;
-  border: 10px solid black;
-  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3),inset 0px 3px 8px rgba(0,0,0,0.3);
-  box-shadow: 0 0 100px 50px black;
-}
-.splash-image img {
-  max-width: 100%;
-  height: 50vw;
-  width:50vw;
-  vertical-align: middle;
-  /* make resized images look good in IE */
-  -ms-interpolation-mode: bicubic;
-}
-/* here's a hover overlay, in case you want that */
-.splash-image span {
+  /*   transform:translateY(-50%) */
+  width: 90%;
+  max-width: 16rem;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  border-radius: 20px;
+  padding: 3rem;
+  font-style: italic;
+  margin: 0 auto;
+  overflow: visible;
   display: none;
+  z-index: 99;
 }
-.splash-image:hover span {
-  display: block;
-  position:absolute;
-  height:50vw;
-  width:50vw;
-  top:0;
-  left:-5vw;
-  padding:25% 8%;
-  background: rgba(0,0,0,.5);
-  color: #fff;
-  margin:auto;
-  padding-top:25%
+
+.splashimg:hover span {
+  display: inline;
 }
-.splash-image:hover span img {
-  min-width:100px;
-  min-width:100px;
-  height:10vw;
-  width:10vw;
+
+.hover2 {
+  color: #ff0;
 }
-.header h1 {
-  color:#ff0
+
+.splashimg:hover .hover2 {
+  display: inline;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.splashimg:hover .me-now {
+  position: fixed;
+  width: 80%;
+  max-width: 12rem;
+  border-radius: 20px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 100;
+}
+
+.hover2:hover .me-now {
+  display: inline;
+}
+
+.getting-blurry {
+  visibility: hidden;
+  background-color: #ff0;
+  color: #006;
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
+  z-index: 111;
+}
+
+.me-now:hover .getting-blurry {
+  visibility: visible;
+}
+
+/*
+#############################
+########  SITE MENU  ########
+#############################
+*/
+
+:root {
+  /*
+    Use 64vw for site menu width
+    from (screen width) 340px to 550px
+    Use media queries below 340 (no narrower than 220px)
+    and above 550 (no wider than 340px)
+*/
+  --site-menu-x: 64vw;
+}
+
+.site-menu {
+  display: flex;
+  justify-content: center; /* align item horizontally */
+  align-items: center; /* align item vertically */
+  border: 2px solid rgba(13, 130, 255);
+  border-radius: calc(var(--site-menu-x) * 0.078125);
+  border-radius: var(--site-menu-x);
+  width: var(--site-menu-x);
+  height: calc(var(--site-menu-x) / 6.4);
+  margin: 4rem auto;
+  animation: zoom-in 4s;
+  /*   padding: 5rem 0; */
+}
+@keyframes zoom-in {
+}
+
+.menu-item {
+  background-color: rgba(13, 130, 255);
+  width: calc(var(--site-menu-x) / 8);
+  height: calc(var(--site-menu-x) / 8);
+  margin: calc(var(--site-menu-x) / 64);
+  background-size: calc(var(--site-menu-x) * 0.108);
+  border-radius: calc(var(--site-menu-x) / 16);
+  position: absolute;
+}
+
+.poptext {
+  left: unset;
+  margin: unset;
+  padding: unset;
+  position: unset;
+  display: flex;
+  justify-content: center;
+  /*   border:2px solid red; */
+  width: var(--site-menu-x);
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  color: white;
+  text-align: center;
+  margin-top: 135%;
+}
+
+.musicjunkie {
+  background-image: url("assets/images/turntable.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 0.2vw;
+  margin-left: -53vw;
+}
+.mjtext {
+  display: none;
+  transform: translatex(-2%);
+}
+.musicjunkie:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.musicjunkie:hover .mjtext {
+  display: inline-block;
+}
+
+.htguru {
+  background-image: url("assets/images/home-theater.png");
+  /*   background-size: 7vw; */
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 0.2vw;
+  margin-left: -35vw;
+}
+.htgtext {
+  display: none;
+  transform: translatex(-16%);
+}
+.htguru:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.htguru:hover .htgtext {
+  display: inline-block;
+}
+
+.itpro {
+  background-image: url("assets/images/it-pro.png");
+  /*   background-size: 7vw; */
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  margin-left: -17vw;
+}
+.itptext {
+  display: none;
+  transform: translatex(-30%);
+}
+.itpro:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.itpro:hover .itptext {
+  display: inline-block;
+}
+
+.webdev {
+  background-image: url("assets/images/webdev.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+.wdtext {
+  display: none;
+  transform: translatex(-44%);
+}
+.webdev:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.webdev:hover .wdtext {
+  display: inline-block;
+}
+
+.techfanatic {
+  background-image: url("assets/images/tech.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  margin-left: 19vw;
+}
+.tftext {
+  display: none;
+  transform: translatex(-58%);
+}
+.techfanatic:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.techfanatic:hover .tftext {
+  display: inline-block;
+}
+
+.smarthome {
+  background-image: url("assets/images/smarthome2.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  margin-left: 37vw;
+}
+.shtext {
+  display: none;
+  transform: translatex(-71%);
+}
+.smarthome:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.smarthome:hover .shtext {
+  display: inline-block;
+}
+
+.me {
+  background-image: url("assets/images/human-being.png");
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  margin-left: 55vw;
+}
+.metext {
+  display: none;
+  transform: translatex(-85%);
+}
+.me:hover {
+  cursor: pointer;
+  display: inline-block;
+}
+.me:hover .metext {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 550px) {
+  :root {
+    --site-menu-x: 340px;
+  }
+
+  .musicjunkie {
+    margin-left: -280px;
+  }
+
+  .htguru {
+    margin-left: -186px;
+  }
+
+  .itpro {
+    margin-left: -90px;
+  }
+
+  .techfanatic {
+    margin-left: 102px;
+  }
+
+  .smarthome {
+    margin-left: 196px;
+  }
+
+  .me {
+    margin-left: 290px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  :root {
+    --site-menu-x: 220px;
+  }
+
+  .musicjunkie {
+    margin-left: -181px;
+  }
+
+  .htguru {
+    margin-left: -120px;
+  }
+
+  .itpro {
+    margin-left: -58px;
+  }
+
+  .techfanatic {
+    margin-left: 66px;
+  }
+
+  .smarthome {
+    margin-left: 128px;
+  }
+
+  .me {
+    margin-left: 189px;
+  }
 }
